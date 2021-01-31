@@ -1,0 +1,116 @@
+$blockTimes: 9900,9930,100,130,200,230,300,330,400,430,500,530,600,630,700,730,800,830,900,930,1000,1030,1100,1130,1200,1230,1300,1330,1400,1430,1500,1530,1600,1630,1700,1730,1800,1830,1900,1930,2000,2030,2100,2130,2200,2230,2300,2330;
+$blockLengths: 1, 2, 3, 4;
+
+
+.scheduleContainer {
+	display: grid;
+	grid-gap: 0.2rem;
+	
+	grid-template-columns: 5rem repeat(4, 1fr);	
+	grid-template-rows: repeat(48, 0fr);
+	grid-template-areas:
+    "time9900 stage stage stage stage"
+    "time9930 stage stage stage stage"
+    "time100 stage stage stage stage"
+    "time130 stage stage stage stage"
+    "time200 stage stage stage stage"
+    "time230 stage stage stage stage"
+    "time300 stage stage stage stage"
+    "time330 stage stage stage stage"
+    "time400 stage stage stage stage"
+    "time430 stage stage stage stage"
+    "time500 stage stage stage stage"
+    "time530 stage stage stage stage"
+    "time600 stage stage stage stage"
+    "time630 stage stage stage stage"
+    "time700 stage stage stage stage"
+    "time730 stage stage stage stage"
+		"time800 stage stage stage stage"
+		"time830 stage stage stage stage"
+		"time900 stage stage stage stage"
+		"time930 stage stage stage stage"
+		"time1000 stage stage stage stage"
+		"time1030 stage stage stage stage"
+		"time1100 stage stage stage stage"
+		"time1130 stage stage stage stage"
+		"time1200 stage stage stage stage"
+		"time1230 stage stage stage stage"
+		"time1300 stage stage stage stage"
+		"time1330 stage stage stage stage"
+		"time1400 stage stage stage stage"
+		"time1430 stage stage stage stage"
+		"time1500 stage stage stage stage"
+		"time1530 stage stage stage stage"
+		"time1600 stage stage stage stage"
+		"time1630 stage stage stage stage"
+		"time1700 stage stage stage stage"
+		"time1730 stage stage stage stage"
+		"time1800 stage stage stage stage"
+		"time1830 stage stage stage stage"
+		"time1900 stage stage stage stage"
+		"time1930 stage stage stage stage"
+		"time2000 stage stage stage stage"
+		"time2030 stage stage stage stage"
+		"time2100 stage stage stage stage"
+		"time2130 stage stage stage stage"
+		"time2200 stage stage stage stage"
+		"time2230 stage stage stage stage"
+		"time2300 stage stage stage stage"
+		"time2330 stage stage stage stage";
+}
+
+.time {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	border-top: thin dotted #ccc;
+	height: 100%;
+	padding: 0 0.5rem;
+	
+	@each $time in $blockTimes {
+		&.start-#{$time} {grid-area: time#{$time} }
+	}
+
+  &[class*="30"]:not(.start-1300):not(.start-2300):not(.start-300) {
+		font-size: 0.8rem;
+		color: #ccc;
+	}
+}
+
+.event {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0.5rem 1rem;
+	background-color: orange;
+	border-radius: 0.2rem;
+	font-size: 0.8rem;
+	font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+	
+	span {
+		display: block;
+		width: 100%;
+		font-size: 0.8em;
+		font-weight: normal;
+	}
+	
+	@each $time in $blockTimes {
+		&.start-#{$time} {grid-row-start: time#{$time} }
+	}
+	
+	@each $time in $blockTimes {
+		&.end-#{$time} {grid-row-end: time#{$time} }
+	}
+	
+	@each $length in $blockLengths {
+		&.length-#{$length} {
+			grid-column-end: span #{$length};
+		}
+	}
+
+  &.stage-morning {background-color: #FFA726};
+  &.stage-afternoon {background-color: #4dc2ca};
+}
+
