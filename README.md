@@ -7,15 +7,21 @@
 * MongoDB for the database
 * Sass for the CSS Framework
 * Formik and Yup to validate the form prior to submitting/inserting the fields into MongoDb.
+* 3rd party integrations: Google Maps, Google Geocoding, Google Places
 
 ## Database Schema
 
 ```
-const ShiftsSchema = new Schema({
+const Activities = new Schema({
   name: { type: String, required: true },
   date: { type: Date, required: true },
   startTime: { type: String, required: true },
   endTime: { type: String, required: true },
+  activity: {
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
+    address: { type: String, required: true }
+  }
 });
 
 ```
